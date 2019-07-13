@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Grid, Menu, Header } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom'
 

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Segment, Item, Icon, List, Button } from 'semantic-ui-react';
 import Attendees from './EventListAttendee';
-
+import { Link } from 'react-router-dom';
 
 class EventListItem extends Component {
 
-  
 
     render() {
-        const { event, onEventOpen, deleteEvent } = this.props;
+        const { event, deleteEvent } = this.props;
         return (
             <Segment.Group>
                 <Segment>
@@ -44,8 +43,18 @@ class EventListItem extends Component {
 
                 <Segment clearing>
                     <span>{this.props.event.description}</span>
-                    <Button as="a" onClick={onEventOpen(event)} color="teal" floated="right" content="View"></Button>
-                    <Button as="a" onClick={deleteEvent(event.id)} color="red" floated="right" content="Delete"></Button>
+                    <Button
+                        as={Link}
+                        to={`events/${event.id}`}
+                        color="teal"
+                        floated="right"
+                        content="View" />
+                    <Button
+                        as="a"
+                        onClick={deleteEvent(event.id)}
+                        color="red"
+                        floated="right"
+                        content="Delete" />
                 </Segment>
             </Segment.Group>
         );

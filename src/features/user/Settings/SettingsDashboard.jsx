@@ -8,6 +8,7 @@ import PhotoPage from './PhotosPage';
 import AccountPage from './AccountPage';
 
 const SettingsDashboard = ()=>{
+
     return (
        <Grid>
            <Grid.Column width={12}>

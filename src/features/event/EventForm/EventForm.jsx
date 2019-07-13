@@ -1,54 +1,75 @@
 import React, { Component } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import {createEvent, updateEvent } from '../eventActions';
 
-const emptyEvent = {
-    title: '',
-    date: '',
-    city: '',
-    venue: '',
-    hostedBy: '',
+import cuid from 'cuid';
+
+const mapState = (state, ownProps) => {
+    const eventId = ownProps.match.params.id;
+    let event = {
+        title: '',
+        date: '',
+        city: '',
+        venue: '',
+        hostedBy: '',
+    }
+    if (eventId && state.events.length > 0) {
+        event = state.events.filter(event => event.id === eventId)[0];
+
+    }
+
+    return {
+        event
+    }
+}
+
+const actions =  {
+    createEvent, 
+    updateEvent
 }
 
 class EventForm extends Component {
 
-    state = {
-        event: {
-            title: '',
-            date: '',
-            city: '',
-            venue: '',
-            hostedBy: '',
-        }
-    }
+    state = { ...this.props.event };
 
-    componentDidMount(){
-        if(this.props.selectedEvent !== null){
-            this.setState({
-                event: this.props.selectedEvent
-            })
-        }
-    }
+    // componentDidMount() {
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.selectedEvent !== this.props.selectedEvent){
-            this.setState({
-                event:nextProps.selectedEvent,
-            })
-        }
-    }
+    //     if (this.props.selectedEvent && this.props.selectedEvent !== null) {
+    //         this.setState({
+    //             event: this.props.selectedEvent
+    //         })
+    //     }
+    // }
+
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.selectedEvent !== this.props.selectedEvent) {
+    //         this.setState({
+    //             event: nextProps.selectedEvent,
+    //         })
+    //     }
+    // }
+
     onFormSubmit = (event) => {
         event.preventDefault();
-        if(this.state.event.id){
+        if (this.state.event.id) {
             this.props.updateEvent(this.state.event);
+            this.props.history.push(`/events/${this.state.event.id}`);
         } else {
-            this.props.createEvent(this.state.event);
+
+            const newEvent = {
+                ...this.state,
+                id : cuid(),
+                hostPhotoURL : '/assets/user.png',
+
+            }
+            this.props.createEvent(newEvent);
+            this.props.history.push(`/events`);
         }
-       
-     
     }
 
     onInputChange = (event) => {
-        const newEvent = this.state.event;
+        const newEvent = this.state;
         newEvent[event.target.name] = event.target.value;
         this.setState({
             event: newEvent,
@@ -57,8 +78,8 @@ class EventForm extends Component {
 
 
     render() {
-        const { handleCancel } = this.props;
-        const { event } = this.state;
+        const event = this.state;
+
         return (
             <Segment>
                 <Form onSubmit={this.onFormSubmit}>
@@ -85,11 +106,11 @@ class EventForm extends Component {
                     <Button positive type="submit">
                         Submit
               </Button>
-                    <Button type="button" onClick={handleCancel}>Cancel</Button>
+                    <Button type="button" onClick={this.props.history.goBack}>Cancel</Button>
                 </Form>
             </Segment>
         );
     }
 }
 
-export default EventForm;
+export default connect(mapState, actions)(EventForm);

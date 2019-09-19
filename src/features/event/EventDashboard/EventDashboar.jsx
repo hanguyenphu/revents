@@ -24,7 +24,18 @@ class EventDashboard extends Component {
 	// 	selectedEvent: null
 	// }
 
+	state = {
 
+	}
+
+	// componentDidMount() {
+	// 	fetch ('https://dog.ceo/api/breeds/list/all')
+	// 	.then(results => {
+	// 		return results.json();
+	// 	}).then(data => {
+	// 		console.log(data.message);
+	// 	})
+	// }
 	// handleCreateEvent = newEvent => {
 	// 	newEvent.id = cuid();
 	// 	newEvent.hostPhotoUrl = '/assets/user.png';

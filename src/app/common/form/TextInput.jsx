@@ -12,6 +12,6 @@ const TextInput = ({
             {touched && error && <Label basic color="red">{error}</Label>}
         </Form.Field>
     )
-}
+} 
 
 export default TextInput;

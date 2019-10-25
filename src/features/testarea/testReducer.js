@@ -14,7 +14,7 @@ const decrementCounter = (state) => {
 }
 
 const testReducer = (state = initialState, action) => {
-
+    return state;
 
 }
 

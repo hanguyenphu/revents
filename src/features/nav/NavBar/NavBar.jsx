@@ -23,7 +23,7 @@ class NavBar extends Component {
     }
 
     render() {
-        const {authenticated} = this.state;
+        const { authenticated } = this.state;
 
         return (
             <Menu inverted fixed="top">
@@ -36,18 +36,16 @@ class NavBar extends Component {
                     <Menu.Item as={NavLink} exact to='/events' name="Events" />
                     <Menu.Item as={NavLink} to='/test' name="Test" />
                     {authenticated &&
-                    <Menu.Item as={NavLink} to='/people' name="People" />}
+                        <Menu.Item as={NavLink} to='/people' name="People" />}
 
                     {authenticated &&
-                    <Menu.Item>
-                        <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
-                    </Menu.Item>}
+                        <Menu.Item>
+                            <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
+                        </Menu.Item>}
 
-                    {authenticated?  <SignedInMenu signOut = {this.handleSignOut}/>:  <SignedOutMenu signIn={this.handleSignIn} />}
-                   
-                   
+                    {authenticated ? <SignedInMenu signOut={this.handleSignOut} /> : <SignedOutMenu signIn={this.handleSignIn} />}
+
                 </Container>
-
             </Menu>
         );
     }

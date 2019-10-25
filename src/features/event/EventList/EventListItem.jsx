@@ -27,7 +27,7 @@ class EventListItem extends Component {
                 <Segment>
                     <span>
                         <Icon name="clock" />{event.date} |
-                       <Icon name="marker" />{event.venue}  {event.city}
+                        <Icon name="marker" />{event.venue}  {event.city}
                     </span>
                 </Segment>
 
@@ -39,7 +39,6 @@ class EventListItem extends Component {
 
                     </List>
                 </Segment>
-
 
                 <Segment clearing>
                     <span>{this.props.event.description}</span>

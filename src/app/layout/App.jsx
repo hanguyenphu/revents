@@ -11,11 +11,7 @@ import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import HomePage from '../../features/home/HomePage';
 import TestComponent from '../../features/testarea/TestComponent';
 
-
-
 class App extends Component {
-
-	
 
 	render() {
 		return (
@@ -40,12 +36,9 @@ class App extends Component {
 						</Container>
 					</div>
 				)} />
-
 			</div>
-
 		);
 	}
-
 }
 
 export default  withRouter(App);
